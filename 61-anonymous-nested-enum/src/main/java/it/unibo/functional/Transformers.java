@@ -94,7 +94,16 @@ public final class Transformers {
      * @param <I> elements type
      */
     public static <I> List<I> select(final Iterable<I> base, final Function<I, Boolean> test) {
-        return null;
+        return flattenTransform(base, new Function<I,List<I>>(){
+            @Override
+            public List<I> call(I input) {
+                final var res = new ArrayList<I>();
+                if(test.call(input)){
+                    res.add(input);
+                }
+                return res;
+            }
+        });
     }
 
     /**
