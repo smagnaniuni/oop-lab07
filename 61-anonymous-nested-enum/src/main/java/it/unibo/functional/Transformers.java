@@ -29,7 +29,7 @@ public final class Transformers {
      * @param <O> output elements type
      */
     public static <I, O> List<O> flattenTransform(
-        final Iterable<? extends I> base,
+            final Iterable<? extends I> base,
         final Function<I, ? extends Collection<? extends O>> transformer
     ) {
         final var result = new ArrayList<O>();
@@ -54,7 +54,14 @@ public final class Transformers {
      * @param <O> output elements type
      */
     public static <I, O> List<O> transform(final Iterable<I> base, final Function<I, O> transformer) {
-        return null;
+        return flattenTransform(base, new Function<I, List<O>>() {
+            @Override
+            public List<O> call(I input) {
+                final var res = new ArrayList<O>();
+                res.add(transformer.call(input));
+                return res;
+            }
+        });
     }
 
     /**
