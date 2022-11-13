@@ -4,6 +4,9 @@ import it.unibo.mvc.api.DrawNumberController;
 import it.unibo.mvc.api.DrawNumberView;
 import it.unibo.mvc.api.DrawResult;
 
+/**
+ * Console {@link DrawNumberView} implementation.
+ */
 public class DrawNumberStdoutView implements DrawNumberView {
 
     @Override
